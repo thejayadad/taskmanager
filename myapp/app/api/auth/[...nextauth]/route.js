@@ -1,15 +1,14 @@
-
-import db from "@/lib/db";
-import UserModel from "@/models/User";
-import GoogleProvider from 'next-auth/providers/google';
 import NextAuth from "next-auth/next";
+import UserModel from "@/models/userModel";
+import GoogleProvider from 'next-auth/providers/google';
+import connectDB from "@/lib/database";
 
-db.connect()
+connectDB()
 
 export const authOptions = {
     providers: [
       GoogleProvider({
-        clientId: process.env.GOOGLE_ID,
+        clientId: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET
       })
     ],
@@ -37,10 +36,12 @@ export const authOptions = {
   
   export { handler as GET, handler as POST };
   
+  /*----------------------------------------------*/
   async function signInWithOAuth({ profile }){
     const user = await UserModel.exists({email: profile.email});
     if(user) return true; // signin
   
+    //if !user => sign up => sign in
     const newUser = new UserModel({
       name: profile.name,
       email: profile.email,
@@ -59,11 +60,10 @@ export const authOptions = {
     const newUser = {
       ...user._doc,
       _id: user._id.toString(),
-      exercises: [],
-      challenges: [],
-      age,
-      height,
-      weight,
+      total_followers: user.followers.length,
+      total_followings: user.followings.length,
+      followers: [],
+      followings: [],
       my_user: true
     }
   

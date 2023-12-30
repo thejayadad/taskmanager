@@ -4,22 +4,34 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
+
 const AuthLinks = ({user}) => {
   return (
     <div className='flex items-center gap-4'>
-        { 
-            user ? (
-                <div className='flex items-center'>
-                <button className='' onClick={() => signOut( )}>SignOut</button>
-                <span>{user?.name}</span>
-                   
-                </div>
-            ) : (
-                <div className='flex items-center'>
-                <button className='' onClick={() => signIn('')}>SignIn</button>
-                </div>
-            )
-        }
+               {
+            !user
+              ? <>
+                  <button className='btn btn_login' onClick={() => signIn('google')}>
+                    <span>Log in</span>
+                  </button>
+
+                  <button className='btn btn_icon'
+                    onClick={() => signIn('google', { callbackUrl: '/create' })}
+                  >
+                    Create
+                  </button>
+              </>
+
+              : <>
+                 <span>{user.name}</span>
+                 <Link href={'/create'}>Create</Link>
+                  <button
+                  onClick={signOut}
+                  >LogOut</button>
+
+                
+              </>
+          }
     </div>
   )
 }
