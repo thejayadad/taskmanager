@@ -39,9 +39,8 @@ export const authOptions = {
   /*----------------------------------------------*/
   async function signInWithOAuth({ profile }){
     const user = await UserModel.exists({email: profile.email});
-    if(user) return true; // signin
+    if(user) return true; 
   
-    //if !user => sign up => sign in
     const newUser = new UserModel({
       name: profile.name,
       email: profile.email,
@@ -60,10 +59,8 @@ export const authOptions = {
     const newUser = {
       ...user._doc,
       _id: user._id.toString(),
-      total_followers: user.followers.length,
-      total_followings: user.followings.length,
-      followers: [],
-      followings: [],
+      exercises: [],
+      workouts: [],
       my_user: true
     }
   

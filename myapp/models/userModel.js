@@ -12,14 +12,13 @@ const userSchema = new Schema({
     unique: true
   },
   avatar: String,
-  public_id: String,
-  followers: [{
+  exercises: [{
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'exercise'
   }],
-  followings: [{
+  workouts: [{
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'workout'
   }]
 }, {
   timestamps: true

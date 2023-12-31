@@ -1,11 +1,12 @@
 'use client'
 import React, { useState } from 'react'
+import UploadForm from '../Form/UploadForm'
 
 const Createpost = () => {
-    const [files, setFiles] = useState([])
   return (
     <section className='max-w-screen-xl mx-auto'>
       Create Post
+      <UploadForm />
     </section>
   )
 }

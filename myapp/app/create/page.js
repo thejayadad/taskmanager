@@ -1,10 +1,12 @@
-import Createpost from '@/components/CreatePost/Createpost'
+import UploadForm from '@/components/Form/UploadForm'
 import React from 'react'
 
 
 const CreatePost = () => {
   return (
-    <Createpost />
+    <div>
+      <UploadForm />
+    </div>
   )
 }
 
