@@ -6,6 +6,7 @@ export const getWorkouts = async () => {
     try {
         connectDB()
         const workouts = await WorkoutModel.find({})
+        console.log("Works " + workouts) 
         return workouts
     } catch (error) {
         throw new Error("Failed to fetch workouts! " + error);

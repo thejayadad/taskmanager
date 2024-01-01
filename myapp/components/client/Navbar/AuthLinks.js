@@ -31,7 +31,7 @@ const AuthLinks = ({user}) => {
               : <>
              <div className="flex items-center gap-4">
              <Link href={'/workouts'}>WorkOuts</Link>
-              <div className='adjustment sm:text-2xl md:text-3xl'>
+              <div className='adjustment sm:text-2xl md:text-2xl'>
               <button
                   className='flex flex-col'
                   onClick={signOut}
