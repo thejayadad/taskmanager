@@ -37,13 +37,14 @@ export const addExercise = async (formData) => {
 export const addWorkout  = async(formData) => {
     const getUser = await getServerUser()
     const creator = getUser._id
-    const { title } =
+    const { title, type } =
     Object.fromEntries(formData);
     try {
         connectDB()
         const newWorkout = new WorkoutModel({
             title,
-            creator
+            creator,
+            type
         })
         await newWorkout.save()
     } catch (error) {

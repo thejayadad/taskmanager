@@ -15,7 +15,7 @@ const Modal = ({children, title, description, opening }) => {
         </div>
         <p className="py-4">{description}</p>
         {children}
-        <div className="modal-action">
+        <div className="modal-action"> 
         </div>
       </div>
     </div>

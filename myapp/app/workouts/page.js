@@ -1,3 +1,4 @@
+import WorkoutForm from '@/components/Form/WorkoutForm'
 import Modal from '@/components/modal/Modal'
 import HeadingText from '@/components/ui/HeadingText'
 import React from 'react'
@@ -22,7 +23,7 @@ const WorkoutsPage = () => {
         }
         title={'Add Workout'}
         description={'Create a New Workout and Add Exercises To The Plan'}
-        children={'text'}
+        children={<WorkoutForm />}
         />
         </div>
         </div>
