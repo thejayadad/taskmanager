@@ -5,6 +5,8 @@ import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import ExerciseModel from "@/models/exerciseModel"
 import WorkoutModel from "@/models/workoutModel"
+import { useRouter } from 'next/navigation';
+
 
 export const addExercise = async (formData) => {
     const getUser = await getServerUser()
@@ -47,8 +49,11 @@ export const addWorkout  = async(formData) => {
             type
         })
         await newWorkout.save()
+
     } catch (error) {
         throw new Error("Failed to Create Workout" + error)
 
     }
+    revalidatePath("/")
+    redirect("/")  
 }
