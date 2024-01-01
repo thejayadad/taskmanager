@@ -20,7 +20,7 @@ const UploadForm = () => {
           name='title'
           required
         />
-        <label>TType</label>
+        <label>Type</label>
         <input
           type='text'
           placeholder='Type...'

@@ -4,6 +4,7 @@ import getServerUser from "./getServerUser"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import ExerciseModel from "@/models/exerciseModel"
+import WorkoutModel from "@/models/workoutModel"
 
 export const addExercise = async (formData) => {
     const getUser = await getServerUser()
@@ -25,10 +26,28 @@ export const addExercise = async (formData) => {
         })
         await newExercise.save()
     } catch (error) {
-        throw new Error("Failed to Create Code" + error)
+        throw new Error("Failed to Create Exercise" + error)
     }
 
     revalidatePath("/")
     redirect("/")
 
+}
+
+export const addWorkout  = async(formData) => {
+    const getUser = await getServerUser()
+    const creator = getUser._id
+    const { title } =
+    Object.fromEntries(formData);
+    try {
+        connectDB()
+        const newWorkout = new WorkoutModel({
+            title,
+            creator
+        })
+        await newWorkout.save()
+    } catch (error) {
+        throw new Error("Failed to Create Workout" + error)
+
+    }
 }
